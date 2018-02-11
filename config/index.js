@@ -1,4 +1,3 @@
 module.exports = {
-  root: 'http://localhost',
-  port: '3030',
+  port: 3030
 }
