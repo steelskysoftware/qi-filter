@@ -5,5 +5,4 @@ module.exports = {
   redis: "redis://localhost/0",
   login: "",
   title: "QI Filter",
-  favicon: "favicon.ico",
 }

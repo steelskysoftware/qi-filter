@@ -1,4 +1,3 @@
-// Update with your config settings.
 const config = require('./server/config')
 const { parse } = require('pg-connection-string')
 const connection = parse(config.postgres)
