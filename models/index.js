@@ -1,11 +1,13 @@
 export {Guest} from './guest'
 export {Video} from './video'
+import config from '../config'
+const root = `${config.root}:${config.port}`
 
 export function model(className) {
   return function define(Class) {
     Object.assign(Class, {
       load() {
-        return fetch(Class.endpoint)
+        return fetch(`${root}/${Class.endpoint}`)
           .then(res => res.json())
           .then(data => {
             Object.keys(data).forEach(k => {
