@@ -1,0 +1,19 @@
+@import './variables';
+
+below($size) {
+  @media screen and (max-width: $size) {
+    {block}
+  }
+}
+
+above($size) {
+  @media screen and (min-width: $size) {
+    {block}
+  }
+}
+
+media($size) {
+  @media screen and (max-width: $size) {
+    {block}
+  }
+}

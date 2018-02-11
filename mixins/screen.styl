@@ -1,0 +1,14 @@
+@import './responsive'
+
+.responsive
+  position: absolute
+  left: -999999
+  z-index: 0
+
+  +below($tablet-landscape)
+    content: 'tablet'
+    z-index: 1
+
+  +below($mobile-portrait)
+    content: 'mobile'
+    z-index: 2
