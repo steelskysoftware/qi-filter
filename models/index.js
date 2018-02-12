@@ -1,7 +1,7 @@
 export {Guest} from './guest'
 export {Video} from './video'
 import config from '../config'
-const root = `${location.protocol}//${location.hostname}:${config.port}`
+const root = `${window.location.protocol}//${window.location.hostname}:${config.port}`
 console.log(root)
 
 export function model(className) {
