@@ -1,7 +1,6 @@
 export {Guest} from './guest'
 export {Video} from './video'
 import config from '../config'
-console.log(process.env)
 
 export function model(className) {
   return function define(Class) {
