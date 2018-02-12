@@ -7,7 +7,7 @@ export function model(className) {
   return function define(Class) {
     Object.assign(Class, {
       load() {
-        return fetch(`${process.env.baseUrl}/${Class.endpoint}`)
+        return fetch(`${process.env.baseUrl}/api/${Class.endpoint}`)
           .then(res => res.json())
           .then(data => {
             Object.keys(data).forEach(k => {
