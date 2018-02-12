@@ -1,6 +1,12 @@
 module.exports = {
   env: {
-    baseUrl: process.env.NODE_ENV === 'production' ? 'https://qifilter.com/api': 'http://localhost:3030',
+    baseUrl: process.env.NODE_ENV === 'production' ? 'https://qifilter.com/api' : 'http://localhost:3030',
+  },
+  modules: [
+    ['@nuxtjs/google-analytics']
+  ],
+ 'google-analytics': {
+    id: 'UA-114037982-1'
   },
   head: {
     title: 'QI Filter',

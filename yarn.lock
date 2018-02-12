@@ -60,6 +60,12 @@
   dependencies:
     acorn "^5.2.1"
 
+"@nuxtjs/google-analytics@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/google-analytics/-/google-analytics-2.0.2.tgz#75353143628fd7697b41eb5aa7da38a513394eca"
+  dependencies:
+    vue-analytics "^5.4.0"
+
 "@nuxtjs/youch@^4.2.3":
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/@nuxtjs/youch/-/youch-4.2.3.tgz#36f8b22df5a0efaa81373109851e1d857aca6bed"
@@ -8349,6 +8355,10 @@ vm-browserify@0.0.4, vm-browserify@~0.0.1:
 void-elements@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
+
+vue-analytics@^5.4.0:
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/vue-analytics/-/vue-analytics-5.8.0.tgz#0df9ce8e6f52f32f1fef597af9debcd2674eea91"
 
 vue-eslint-parser@^2.0.1:
   version "2.0.2"
