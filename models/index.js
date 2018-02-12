@@ -1,14 +1,13 @@
 export {Guest} from './guest'
 export {Video} from './video'
 import config from '../config'
-const root = `${window.location.protocol}//${window.location.hostname}:${config.port}`
-console.log(root)
+console.log(process.env)
 
 export function model(className) {
   return function define(Class) {
     Object.assign(Class, {
       load() {
-        return fetch(`${root}/${Class.endpoint}`)
+        return fetch(`${process.env.baseUrl}/${Class.endpoint}`)
           .then(res => res.json())
           .then(data => {
             Object.keys(data).forEach(k => {

@@ -1,4 +1,8 @@
 module.exports = {
+  env: {
+    baseUrl: process.env.NODE_ENV === 'production' ? 'https://qi-filter.com': 'http://localhost:3030',
+    port: 3030
+  },
   head: {
     title: 'QI Filter',
     meta: [
