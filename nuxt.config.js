@@ -9,12 +9,12 @@ module.exports = {
     id: 'UA-114037982-1'
   },
   head: {
-    title: 'QI Filter',
+    title: 'QI (Quite Interesting) Episode Filter',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no, minimal-ui' },
       { name: 'mobile-web-app-capable', content: 'yes' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'description', name: 'description', content: 'QI filter generates a list of episodes from the show QI (Quite Interesting) based on your filter criteria. Include or exclude panelists, or combine the two.' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
