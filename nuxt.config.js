@@ -2,6 +2,9 @@ module.exports = {
   env: {
     baseUrl: process.env.NODE_ENV === 'production' ? 'https://qifilter.com/api' : 'http://localhost:3030',
   },
+  plugins: [
+
+  ],
   modules: [
     ['@nuxtjs/google-analytics']
   ],
@@ -23,6 +26,9 @@ module.exports = {
   },
   loading: { color: '#3B8070' },
   build: {
+    vendor: [
+      
+    ],
     stats: false,
     babel: {
       plugins: [

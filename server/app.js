@@ -19,7 +19,6 @@ app
   }))
   .use(responseTime())
   .use(cors())
-  .use(express.static(path.join( __dirname, './assets')))
   .use('/', routes)
 
 app.listen(config.port || 3030)

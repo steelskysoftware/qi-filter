@@ -18,17 +18,12 @@ export default {
     this.mode = this.modes[0]
     this.counts = {}
     this.filter = {}
-
-
   },
   mounted() {
     let script = document.createElement('script')
     script.setAttribute('src', 'https://www.youtube.com/iframe_api')
     document.head.appendChild(script)
 
-    window.onYouTubeIframeAPIReady = (e) => {
-      this.createPlayer()
-    }
     Promise.all([
       Guest.load(),
       Video.load(),
@@ -36,6 +31,7 @@ export default {
       data.forEach(d => Object.assign(this, d))
       this.filteredVideos = this.videos
       this.initGuests()
+      window.onYouTubeIframeAPIReady = (e) => this.createPlayer()
     })
   },
   methods: {
@@ -43,14 +39,18 @@ export default {
       var onPlayerReady = () => {
         this.ready = true
         let iframe = this.$el.querySelector('iframe')
-        iframe.style.height = 'auto'
+        iframe.style.height = '720px'
         iframe.style.width = '100%'
       }
-      this.player = new YT.Player(this.$refs.player, {
+      let params = {
         events: {
           onReady: onPlayerReady,
         }
-      })
+      }
+      if(this.videos && this.videos[0]) {
+        Object.assign(params, {videoId: this.videos[0].url})
+      }
+      this.player = new YT.Player(this.$refs.player, params)
     },
     scrollToTop() {
       window.scrollTo(0, 0)

@@ -2,125 +2,26 @@
 
 .host
   display: flex
-  background-color: $primary-color
-  color: $primary-text
-.left
-  display: flex
   flex-direction: column
-  flex: 8
-  header
-    display: flex
-    justify-content: center
-    padding: 1em 1em .5em
-    height: 720px
-  footer
-    display: flex
-    justify-content: center
-    padding: .5em 1em 1em
-    section
-      display: flex
-      flex-direction: column
-      .filters
-        display: flex
-        .toggles
-          display: flex
-          .toggle
-            display: flex
-            align-items: center
-            margin-right: 1em
-            text-transform: capitalize
-            input
-              margin-right: .5em
-    .explanation
-      min-height: 30px
-      display: flex
-      section
-        display: flex
-        flex-direction: column
-        flex: 1
-        span
-          font-size: .8em
-          &.text
-            color: $primary-text-hue
-          &.guests
-            font-weight: 700
-            &.included.inclusion
-              color: $success
-            &.excluded, &.exclusion
-              color: $danger
-    .guests
-      display: flex
-      flex-wrap: wrap
-      .guest
-        display: flex
-        flex-direction: column
-        align-items: center
-        position: relative
-        margin: 1em 1em 1.2em
-        user-select: none
-        cursor: pointer
-        min-height: 150px
-        max-height: 150px
-        min-width: 150px
-        max-width: 150px
-        text-align: center
-        .name
-          display: flex
-          flex-direction: column
-          align-items: center
-          line-height: 15px
-          margin-top: 5px
-          span
-            font-size: .8em
-        img
-          width: 128px
-          height: 128px
-          min-width: 128px
-          min-height: 128px
-          border-radius: 50%
-        &.excluded:before
-          position: absolute
-          top: 0
-          left: 37px
-          line-height: 128px
-          font-size: 8em
-          font-weight: 700
-          color: $danger
-          content: "X"
-        &.included:before
-          position: absolute
-          top: 0
-          left: 105px
-          line-height: 45px
-          font-size: 3em
-          font-weight: 700
-          color: $success
-          content: "✓"
-        &.disabled, &.excluded
-          img
-            opacity: .4
-            filter: grayscale(1)
-.right
+  background-color: $primary-color-hue
+  color: $primary-text
+header
+  display: flex
+  justify-content: center
   position: relative
-  min-width: 300px
-  padding: 1em
-  .list
+  padding: 1em 1em .5em
+  height: 720px
+  .left
     display: flex
     flex-direction: column
-    position: fixed
-    top: 0
-    right: 0
+    flex: 8
+    height: 100%
+  .right
     min-width: 300px
-    padding: 1em
-    flex: 2
-    font-size: .9em
-    overflow-y: auto
-    max-height: 97vh
-    &::-webkit-scrollbar
-      display: none
+    padding-left: 1em
     .btns
       display: flex
-      margin-bottom: .5em
+      padding-bottom: .5em
       min-height: 42px
       justify-content: space-between
       .btn
@@ -130,10 +31,146 @@
     .counts
       display: flex
       justify-content: flex-end
+      font-size: .9em
+      padding-bottom: .5em
       span, b
-        margin-right: 5px
-    .video
+        padding-right: 5px
+    .list
+      display: flex
+      flex-direction: column
+      background-color: $primary-color
+      min-width: 300px
+      line-height: 18px
+      flex: 2
+      font-size: .9em
+      overflow-y: auto
+      min-height: 638px
+      max-height: 638px
+      padding: .3em
+      .video
+        span
+          cursor: pointer
+          color: $primary-text
+          text-decoration: underline
+      +below($tablet-portrait)
+        height: 218px
+        min-height: 0
+  +below($tablet-portrait)
+    flex-direction: column
+    height: auto
+    .left
+      height: 400px
+      padding-bottom: 1em
+    .right
+      padding-left: 0
+  +below($mobile-portrait)
+    .left
+      height: 200px
+footer
+  display: flex
+  justify-content: center
+  padding: .5em 1em 1em
+  section
+    display: flex
+    flex-direction: column
+    .filters
+      display: flex
+      .toggles
+        display: flex
+        .toggle
+          display: flex
+          align-items: center
+          margin-right: 1em
+          text-transform: capitalize
+          input
+            margin-right: .5em
+  .explanation
+    min-height: 30px
+    display: flex
+    section
+      display: flex
+      flex-direction: column
+      flex: 1
       span
-        cursor: pointer
-        color: $primary-text
-        text-decoration: underline
+        font-size: .8em
+        &:first-child
+          color: $primary-text-hue
+        &:last-child
+          font-weight: 700
+          &.included.inclusion
+            color: $success
+          &.excluded, &.exclusion
+            color: $danger
+    +below($mobile-portrait)
+      display: none
+  .guests
+    display: flex
+    flex-wrap: wrap
+    .guest
+      display: flex
+      flex-direction: column
+      align-items: center
+      position: relative
+      margin: 1em 1em 1.2em
+      user-select: none
+      cursor: pointer
+      min-height: 150px
+      max-height: 150px
+      min-width: 150px
+      max-width: 150px
+      text-align: center
+      .name
+        display: flex
+        flex-direction: column
+        align-items: center
+        line-height: 15px
+        margin-top: 5px
+        span
+          font-size: .8em
+      img
+        width: 128px
+        height: 128px
+        min-width: 128px
+        min-height: 128px
+        border-radius: 50%
+      &.excluded:before
+        position: absolute
+        top: 0
+        left: 37px
+        line-height: 128px
+        font-size: 8em
+        font-weight: 700
+        color: $danger
+        content: "X"
+      &.included:before
+        position: absolute
+        top: 0
+        left: 105px
+        line-height: 45px
+        font-size: 3em
+        font-weight: 700
+        color: $success
+        content: "✓"
+      &.disabled, &.excluded
+        img
+          opacity: .4
+          filter: grayscale(1)
+    +below($tablet-portrait)
+      justify-content: center
+    +below($mobile-portrait)
+      .guest
+        min-height: 100px
+        max-height: 100px
+        min-width: 100px
+        max-width: 100px
+        &.included:before
+          left: 70px
+        &.excluded:before
+          left: 23px
+          font-size: 5em
+          line-height: 80px
+        img
+          width: 80px
+          height: 80px
+          min-width: 80px
+          min-height: 80px
