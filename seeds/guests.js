@@ -43,7 +43,7 @@ exports.seed = function(knex, Promise) {
         {tag: 'fredMacAulay', name: 'Fred MacAulay'},
         {tag: 'clareBalding', name: 'Clare Balding'},
         {tag: 'leeMack', name: 'Lee Mack'},
-        {tag: 'grahanNorton', name: 'Graham Norton'},
+        {tag: 'grahamNorton', name: 'Graham Norton'},
         {tag: 'danielRadcliffe', name: 'Daniel Radcliffe'},
         {tag: 'ronniAncona', name: 'Ronni Ancona'},
         {tag: 'robertWebb', name: 'Robert Webb'},
