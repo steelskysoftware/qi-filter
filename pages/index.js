@@ -29,7 +29,7 @@ export default {
       Video.load(),
     ]).then(data => {
       data.forEach(d => Object.assign(this, d))
-      this.filteredVideos = this.videos
+      this.filteredVideos = this.videos.sort((a, b) => a.id - b.id)
       this.initGuests()
       window.onYouTubeIframeAPIReady = (e) => this.createPlayer()
     })
