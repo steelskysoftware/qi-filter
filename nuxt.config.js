@@ -6,8 +6,12 @@ module.exports = {
 
   ],
   modules: [
-    ['@nuxtjs/google-analytics']
+    ['@nuxtjs/google-analytics'],
+    ['@nuxtjs/google-adsense'],
   ],
+  'google-adsense': {
+    id: 'ca-pub-1474077632768183'
+  },
  'google-analytics': {
     id: 'UA-114037982-1'
   },
@@ -27,7 +31,7 @@ module.exports = {
   loading: { color: '#3B8070' },
   build: {
     vendor: [
-      
+
     ],
     stats: false,
     babel: {

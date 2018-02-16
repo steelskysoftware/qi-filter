@@ -149,7 +149,16 @@ exports.seed = function(knex, Promise) {
         {tag: 'davidBaddiel', name: 'David Baddiel'},
         {tag: 'jerrySpringer', name: 'Jerry Springer'},
         {tag: 'nishKumar', name: 'Nish Kumar'},
-        {tag: 'frankieBoyle', name: 'Frankie Boyle'}
+        {tag: 'frankieBoyle', name: 'Frankie Boyle'},
+        {tag: 'claudiaWinkleman', name: 'Claudia Winkleman'},
+        {tag: 'joeLycett', name: 'Joe Lycett'},
+        {tag: 'graysonPerry', name: 'Grayson Perry'},
+        {tag: 'janRavens', name: 'Jan Ravens'},
+        {tag: 'sallyPhillips', name: 'Sally Phillips'},
+        {tag: 'aliceLevine', name: 'Alice Levine'},
+        {tag: 'russellBrand', name: 'Russell Brand'},
+        {tag: 'stephenKAmos', name: 'Stephen K. Amos'},
+        {tag: 'callyBeaton', name: 'Cally Beaton'},
       ]);
     });
 };

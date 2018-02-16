@@ -1,5 +1,6 @@
 <template lang="pug">
 .host
+  //- adsbygoogle(ad-slot=" ")
   header
     .left
       #player(ref="player")
