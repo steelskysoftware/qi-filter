@@ -54,6 +54,8 @@
           .name
             b {{ guest.name }}
             span {{ counts[guest.tag] + ' videos' }}
+  .copy
+    a(href="mailto:steelskysoftware@gmail.com") Ⓒ 2018 Steel Sky Software
 </template>
 <script lang="babel" src="./index.js"></script>
 <style scoped lang="stylus" src="./index.styl"></style>
