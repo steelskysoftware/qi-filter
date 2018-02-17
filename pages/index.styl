@@ -39,19 +39,32 @@ header
       display: flex
       flex-direction: column
       background-color: $primary-color
-      min-width: 300px
+      min-width: 391px
       line-height: 18px
       flex: 2
       font-size: .9em
       overflow-y: auto
-      min-height: 638px
-      max-height: 638px
-      padding: .3em
+      min-height: 647px
+      max-height: 647px
+      border: 1px solid $primary-color-subtle
+      .no-videos
+        padding: .3em
       .video
         span
+          display: flex
+          flex-direction: column
           cursor: pointer
           color: $primary-text
-          text-decoration: underline
+          line-height: 14px
+          padding: .3em
+          border-bottom: 1px solid $primary-color-hue
+          transition: background-color .1s
+          &:hover
+            background-color: $primary-color-hue
+          p
+            margin: 0
+            font-size: .7em
+            color: $primary-text-hue
       +below($tablet-portrait)
         height: 218px
         min-height: 0

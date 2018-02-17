@@ -79,6 +79,12 @@ export default {
       this.filterVideos()
       this.getExplanation()
     },
+    guestsFromTags(video) {
+      return video.tags
+        .split(',')
+        .map(t => this.guests.find(g => g.tag === t).name)
+        .join(', ')
+    },
     toggleGuest(guest) {
       if(this.filter.included.includes(guest.tag)) {
         this.filter.included = this.filter.included.filter(t => t !== guest.tag)

@@ -17,8 +17,9 @@
         div(v-if="filteredVideos && filteredVideos.length")
           .video(v-for="video in filteredVideos")
             span(v-on:click="playVideo(video.url)")
-              | {{ video.title || 'https://www.youtube.com/watch?v=' + video.url }}
-        div(v-else)
+              b {{ video.title || 'https://www.youtube.com/watch?v=' + video.url }}
+              p {{ guestsFromTags(video) }}
+        .no-videos(v-else)
           span All episodes filtered out.
   footer
     section(v-if="ready")
