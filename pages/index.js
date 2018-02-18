@@ -11,7 +11,7 @@ export default {
       videos: [],
       filteredVideos: [],
       explanation: {},
-      currentVideoId: null
+      currentVideoId: null,
     }
   },
   created() {
@@ -56,10 +56,14 @@ export default {
           }
         }
       }
+      var onPlayerError = (e) => {
+        console.error(`Playback error code: ${e && e.data}`, e && e.target && e.target.getVideoData())
+      }
       let params = {
         events: {
           onReady: onPlayerReady,
           onStateChange: onPlayerStateChange,
+          onError: onPlayerError,
         }
       }
       if(this.videos && this.videos[0]) {
