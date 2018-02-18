@@ -21,14 +21,20 @@ export default {
     this.filter = {}
   },
   mounted() {
-    let script = document.createElement('script')
-    script.setAttribute('src', 'https://www.youtube.com/iframe_api')
-    document.head.appendChild(script)
+    let loadScript = new Promise((resolve, reject) => {
+      let script = document.createElement('script')
+      script.src = 'https://www.youtube.com/iframe_api'
+      script.addEventListener('load', () => resolve(script), false)
+      script.addEventListener('error', () => reject(), false)
+      document.body.appendChild(script)
+    })
 
     Promise.all([
       Guest.load(),
       Video.load(),
+      loadScript
     ]).then(data => {
+      console.log('mounted and loaded')
       data.forEach(d => Object.assign(this, d))
       this.filteredVideos = this.videos.sort((a, b) => a.id - b.id)
       this.initGuests()
@@ -37,7 +43,9 @@ export default {
   },
   methods: {
     createPlayer() {
+      console.log('creating player')
       var onPlayerReady = () => {
+        console.log('player ready')
         this.ready = true
         let iframe = this.$el.querySelector('iframe')
         iframe.style.height = '720px'
