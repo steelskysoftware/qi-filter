@@ -24,8 +24,14 @@ export default {
     let loadScript = new Promise((resolve, reject) => {
       let script = document.createElement('script')
       script.src = 'https://www.youtube.com/iframe_api'
-      script.addEventListener('load', () => resolve(script), false)
-      script.addEventListener('error', () => reject(), false)
+      script.addEventListener('load', () => {
+        console.log('script loaded')
+        return resolve(script)
+      }, false)
+      script.addEventListener('error', (e) => {
+        console.log('script load error', e)
+        return reject()
+      }, false)
       document.body.appendChild(script)
     })
 
