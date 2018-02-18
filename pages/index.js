@@ -10,7 +10,8 @@ export default {
       ready: false,
       videos: [],
       filteredVideos: [],
-      explanation: {}
+      explanation: {},
+      currentVideoId: null
     }
   },
   created() {
@@ -42,9 +43,23 @@ export default {
         iframe.style.height = '720px'
         iframe.style.width = '100%'
       }
+      var onPlayerStateChange = (state) => {
+        let data = state && state.target && state.target.getVideoData()
+        this.currentVideoId = data && data.video_id
+        let list = this.$refs.list
+        let currentEl = this.$refs.list.querySelector('.video.current')
+        if(list && currentEl) {
+          let listScroll = list.scrollTop + list.clientHeight
+          let currentElPos = currentEl.clientHeight + (currentEl.offsetTop - list.offsetTop)
+          if(listScroll < currentElPos || listScroll > currentElPos + list.clientHeight ) {
+            list.scrollTop = currentEl.offsetTop - list.offsetTop
+          }
+        }
+      }
       let params = {
         events: {
           onReady: onPlayerReady,
+          onStateChange: onPlayerStateChange,
         }
       }
       if(this.videos && this.videos[0]) {
@@ -56,8 +71,8 @@ export default {
       window.scrollTo(0, 0)
     },
     playVideo(url) {
-      this.scrollToTop()
       this.player.loadVideoById(url)
+
     },
     playAll() {
       if(!this.filteredVideos.length) return

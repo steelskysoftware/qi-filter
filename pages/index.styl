@@ -50,6 +50,14 @@ header
       .no-videos
         padding: .3em
       .video
+        &.current
+          background-color: $secondary-color-hue
+          span
+            color: $secondary-text
+            p
+              color: $secondary-text-hue
+        &:not(.current):hover
+          background-color: $primary-color-hue
         span
           display: flex
           flex-direction: column
@@ -59,8 +67,6 @@ header
           padding: .3em
           border-bottom: 1px solid $primary-color-hue
           transition: background-color .1s
-          &:hover
-            background-color: $primary-color-hue
           p
             margin: 0
             font-size: .7em

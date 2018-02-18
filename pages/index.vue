@@ -13,9 +13,15 @@
         b {{ filteredVideos.length }}
         span Filtered:
         b {{ videos.length - filteredVideos.length }}
-      .list(v-if="videos && videos.length")
+      .list(
+        ref="list",
+        v-if="videos && videos.length"
+      )
         div(v-if="filteredVideos && filteredVideos.length")
-          .video(v-for="video in filteredVideos")
+          .video(
+            :class="{current: currentVideoId === video.url}",
+            v-for="video in filteredVideos"
+          )
             span(v-on:click="playVideo(video.url)")
               b {{ video.title || 'https://www.youtube.com/watch?v=' + video.url }}
               p {{ guestsFromTags(video) }}
