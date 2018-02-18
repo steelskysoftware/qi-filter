@@ -24,7 +24,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'QI filter generates a list of episodes from the show QI (Quite Interesting) based on your filter criteria. Include or exclude panelists, or combine the two.' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
       { href: 'https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&amp;subset=latin,cyrillic,cyrillic-ext,latin-ext', rel: 'stylesheet', type: 'text/css' },
     ]
   },
