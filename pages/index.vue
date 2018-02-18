@@ -3,7 +3,13 @@
   //- adsbygoogle(ad-slot=" ")
   header
     .left
-      #player(ref="player")
+      youtube(
+        ref="player",
+        :video-id="currentVideoId",
+        @ready="ready",
+        @playing="playing",
+        :player-vars="{autoplay: !isFirstLoad}",
+      )
     .right
       .btns
         .btn(v-on:click="playAll()") Play All
@@ -23,12 +29,12 @@
             v-for="video in filteredVideos"
           )
             span(v-on:click="playVideo(video.url)")
-              b {{ video.title || 'https://www.youtube.com/watch?v=' + video.url }}
+              b {{ video.title }}
               p {{ guestsFromTags(video) }}
         .no-videos(v-else)
           span All episodes filtered out.
   footer
-    section(v-if="ready")
+    section(v-if="hasLoaded")
       .filters
         .toggles
           .toggle(v-for="m in modes")

@@ -1,5 +1,8 @@
 import {Guest, Video} from '../models'
 import shuffle from 'lodash/shuffle'
+import Vue from 'vue'
+import VueYouTubeEmbed from 'vue-youtube-embed'
+Vue.use(VueYouTubeEmbed)
 
 export default {
   components: {
@@ -7,7 +10,8 @@ export default {
   },
   data() {
     return {
-      ready: false,
+      hasLoaded: false,
+      isFirstLoad: true,
       videos: [],
       filteredVideos: [],
       explanation: {},
@@ -21,90 +25,72 @@ export default {
     this.filter = {}
   },
   mounted() {
-    let loadScript = new Promise((resolve, reject) => {
-      let script = document.createElement('script')
-      script.src = 'https://www.youtube.com/iframe_api'
-      script.addEventListener('load', () => {
-        console.log('script loaded')
-        return resolve(script)
-      }, false)
-      script.addEventListener('error', (e) => {
-        console.log('script load error', e)
-        return reject()
-      }, false)
-      document.body.appendChild(script)
-    })
-
     Promise.all([
       Guest.load(),
       Video.load(),
-      loadScript
     ]).then(data => {
       console.log('mounted and loaded')
       data.forEach(d => Object.assign(this, d))
       this.filteredVideos = this.videos.sort((a, b) => a.id - b.id)
+      this.currentVideoId = this.videos && this.videos[0].url
       this.initGuests()
-      window.onYouTubeIframeAPIReady = (e) => this.createPlayer()
     })
   },
   methods: {
-    createPlayer() {
-      console.log('creating player')
-      var onPlayerReady = () => {
-        console.log('player ready')
-        this.ready = true
-        let iframe = this.$el.querySelector('iframe')
-        iframe.style.height = '720px'
-        iframe.style.width = '100%'
-      }
-      var onPlayerStateChange = (state) => {
-        let data = state && state.target && state.target.getVideoData()
-        this.currentVideoId = data && data.video_id
-        let list = this.$refs.list
-        let currentEl = this.$refs.list.querySelector('.video.current')
-        if(list && currentEl) {
-          let listScroll = list.scrollTop + list.clientHeight
-          let currentElPos = currentEl.clientHeight + (currentEl.offsetTop - list.offsetTop)
-          if(listScroll < currentElPos || listScroll > currentElPos + list.clientHeight ) {
-            list.scrollTop = currentEl.offsetTop - list.offsetTop
-          }
-        }
-      }
-      var onPlayerError = (e) => {
-        console.error(`Playback error code: ${e && e.data}`, e && e.target && e.target.getVideoData())
-      }
-      let params = {
-        events: {
-          onReady: onPlayerReady,
-          onStateChange: onPlayerStateChange,
-          onError: onPlayerError,
-        }
-      }
-      if(this.videos && this.videos[0]) {
-        Object.assign(params, {videoId: this.videos[0].url})
-      }
-      this.player = new YT.Player(this.$refs.player, params)
+    ready(player) {
+      this.player = player
+      let iframe = this.$el.querySelector('iframe')
+      iframe.style.height = '720px'
+      iframe.style.width = '100%'
+      this.hasLoaded = true
+    },
+    playing(player) {
+      let data = player.getVideoData()
+    },
+    stop() {
+      this.player.stopVideo()
+    },
+    pause() {
+      this.player.pauseVideo()
     },
     scrollToTop() {
       window.scrollTo(0, 0)
     },
     playVideo(url) {
+      this.isFirstLoad = false
       this.player.loadVideoById(url)
-
+      this.setCurrentVideo(url)
     },
     playAll() {
       if(!this.filteredVideos.length) return
-      this.scrollToTop()
+      this.isFirstLoad = false
       let urls = []
       this.filteredVideos.forEach(v => urls.push(v.url))
       this.player.loadPlaylist({playlist: urls})
+      this.setCurrentVideo(urls[0])
     },
     playRandom() {
       if(!this.filteredVideos.length) return
-      this.scrollToTop()
+      this.isFirstLoad = false
       let urls = []
       shuffle(this.filteredVideos).forEach(v => urls.push(v.url))
       this.player.loadPlaylist({playlist: urls})
+      this.setCurrentVideo(urls[0])
+    },
+    setCurrentVideo(url) {
+      this.currentVideoId = url
+
+      setTimeout(() => {
+        let list = this.$refs.list
+        let currentEl = this.$refs.list.querySelector('.video.current')
+        if(list && currentEl) {
+          let listScroll = list.scrollTop + list.clientHeight
+          let currentElPos = currentEl.clientHeight + (currentEl.offsetTop - list.offsetTop)
+          if(listScroll < currentElPos || listScroll > currentElPos + list.clientHeight) {
+            list.scrollTop = currentEl.offsetTop - list.offsetTop
+          }
+        }
+      }, 1)
     },
     setMode(mode) {
       this.mode = mode
