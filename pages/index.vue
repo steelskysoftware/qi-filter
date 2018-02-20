@@ -3,7 +3,7 @@
   //- adsbygoogle(ad-slot=" ")
   header
     .left
-      youtube(
+      youtube#youtube(
         ref="player",
         :video-id="currentVideoId",
         @ready="ready",

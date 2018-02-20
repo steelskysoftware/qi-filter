@@ -56,7 +56,7 @@ module.exports = {
           loader.options.name &&
           loader.options.name.includes('img'))
       })
-      urlLoader.options.limit = 5000
+      urlLoader.options.limit = 2500
     }
   }
 }

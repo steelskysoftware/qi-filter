@@ -2,6 +2,7 @@ import {Guest, Video} from '../models'
 import shuffle from 'lodash/shuffle'
 import Vue from 'vue'
 import VueYouTubeEmbed from 'vue-youtube-embed'
+
 Vue.use(VueYouTubeEmbed)
 
 export default {
@@ -38,9 +39,10 @@ export default {
   },
   methods: {
     ready(player) {
+      console.log('player ready')
       this.player = player
       let iframe = this.$el.querySelector('iframe')
-      iframe.style.height = '720px'
+      iframe.style.height = '100%'
       iframe.style.width = '100%'
       this.hasLoaded = true
     },
