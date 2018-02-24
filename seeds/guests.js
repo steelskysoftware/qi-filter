@@ -159,6 +159,7 @@ exports.seed = function(knex, Promise) {
         {tag: 'russellBrand', name: 'Russell Brand'},
         {tag: 'stephenKAmos', name: 'Stephen K. Amos'},
         {tag: 'callyBeaton', name: 'Cally Beaton'},
+        {tag: 'desireeBurch', name: 'Desiree Burch'},
       ]);
     });
 };

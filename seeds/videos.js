@@ -309,6 +309,13 @@ exports.seed = function(knex, Promise) {
           views: 0,
           createdAt: new Date(),
         },
+        {
+          title: 'O - Overseas',
+          url: 'NTU9prriRw0',
+          tags: 'sandiToksvig,alanDavies,desireeBurch,colinLane,billBailey',
+          views: 0,
+          createdAt: new Date(),
+        },
       ]);
     });
 };
